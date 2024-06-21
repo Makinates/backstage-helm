@@ -1,0 +1,35 @@
+global:
+  namespace: backstage
+
+postgres:
+  storage:
+    size: 2Gi
+    className: manual
+    hostPath: /mnt/data
+  image:
+    repository: postgres
+    tag: 13.2-alpine
+    pullPolicy: IfNotPresent
+  secret:
+    user: backstage
+    password: hunter2
+
+backstage:
+  image:
+    repository: dankuta/backstage
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+  companyName: "<Company Name>"
+  github:
+    token: <Github Token>
+    clientId: <OAuth App Client ID>
+    clientSecret: <OAuth App Client Secret>
+  auth:
+    orgAppId: "<Org App ID>"
+    orgClientId: <Org App Client ID>
+    orgClientSecret: <Org App Client Secret>
+    orgWebhookSecret: <Org App Webhook Secret>
+    orgPrivateKey: |
+      -----BEGIN RSA PRIVATE KEY-----
+      PRIVATE KEY HERE
+      -----END RSA PRIVATE KEY-----
